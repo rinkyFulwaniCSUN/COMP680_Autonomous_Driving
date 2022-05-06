@@ -11,9 +11,9 @@ class traffic:
 
 
 def trafficsign():
-    model_path = "C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffic_sign/model.h5"
+    model_path = "C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/model.h5"
     loaded_model = tf.keras.models.load_model(model_path)
-    image = cv2.imread("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffic_sign/test_images/rightcurve.png")
+    image = cv2.imread("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/test_images/rightcurve.png")
     image_fromarray = Image.fromarray(image, 'RGB')
     resize_image = image_fromarray.resize((30, 30))
     expand_input = np.expand_dims(resize_image,axis=0)
