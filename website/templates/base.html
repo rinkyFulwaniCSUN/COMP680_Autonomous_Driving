@@ -10,22 +10,36 @@
 </head>
 
 <body>
-  <div class="container col-xxl-8 px-4 py-5">
+  <div class="container col-xxl-12 px-4 py-5">
 
-      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="row flex-lg-row-reverse align-items-left g-5 py-5">
         <div class="col-lg-6">
-
-
-
           <h1 class="display-5 fw-bold lh-1 mb-3">Traffic Sign</h1>
           <p class="lead">Train or execute the model to detect traffic signs.</p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
             <form class="" action="/traffic_sign">
               <button type="submit" href="/traffic_sign" class="btn btn-primary btn-lg px-4 me-md-2">Run</button>
             </form>
-            <form class="" action="/train_traffic_sign">
+            <!-- <form class="" action="/train_traffic_sign">
               <button type="submit" href="/train_traffic_sign" class="btn btn-outline-secondary btn-lg px-4">Train</button>
+            </form> -->
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row flex-lg-row-reverse align-items-left g-5 py-5">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Traffic Lights</h1>
+          <p class="lead">Train or execute the model to detect and classify traffic lights as red, yellow or green.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <form class="" action="/traffic_light" method="get">
+              <button type="submit" href="/traffic_sign" class="btn btn-primary btn-lg px-4 me-md-2">Run</button>
             </form>
+            <!-- <form class="" action="/train_traffic_light">
+              <button type="submit" href="/train_traffic_sign" class="btn btn-outline-secondary btn-lg px-4">Train</button>
+            </form> -->
           </div>
 
         </div>

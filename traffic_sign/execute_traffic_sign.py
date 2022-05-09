@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
 
-class traffic:
+class trafficSign:
     def __init__(self,filename):
         self.filename =filename
 
 
 def trafficsign():
-    model_path = "C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/model.h5"
+    model_path = "C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/signs.h5"
     loaded_model = tf.keras.models.load_model(model_path)
     image = cv2.imread("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/test_images/rightcurve.png")
     image_fromarray = Image.fromarray(image, 'RGB')
