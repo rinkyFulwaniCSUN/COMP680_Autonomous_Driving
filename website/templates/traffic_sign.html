@@ -19,8 +19,13 @@
             <img src="" id="photo">
             <canvas style="display:none;" id="canvas"></canvas>
           </div>
+          <!-- {% if filename %}
+          <div>
+            <img src="{{url_for('traffic_sign', filename='/test_images/'+filename )}}"
+          </div>
+          {% endif %} -->
           <div class="btn-part">
-            <form id="upload-data pt-3" class="" action="/predict" method="post">
+            <form id="upload-data pt-3" class="" action="/predict" method="post" enctype="multipart/form-data">
               <div>
                 <label for="formFileLg" class="form-label">File Input</label>
                 <input class="form-control form-control-lg" id="fileinput" name="fileinput" type="file">
