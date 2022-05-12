@@ -26,11 +26,11 @@ from keras.utils import np_utils
 #         print("epochs from user---"+ self.epochs)
 
 
-data_dir = os.path.abspath('C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffi_sign/ctraffic_sign_dataset')
+data_dir = os.getcwd() + '/traffic_sign_dataset'
 list_images = []
 output = []
-train_path = 'C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffic_sign_dataset/Train'
-test_path = 'C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffic_sign_dataset/Test'
+train_path = data_dir + '/Train'
+test_path = data_dir + '/Test'
 # Resizing the images to 30x30x3
 IMG_HEIGHT = 30
 IMG_WIDTH = 30
@@ -131,6 +131,12 @@ image_labels = np.array(image_labels)
 
 print(image_data.shape, image_labels.shape)
 
+#shuffling
+shuffle_indexes = np.arange(image_data.shape[0])
+np.random.shuffle(shuffle_indexes)
+image_data = image_data[shuffle_indexes]
+image_labels = image_labels[shuffle_indexes]
+
 #splitting data into train and validation dataset
 
 X_train, X_val, y_train, y_val = train_test_split(image_data, image_labels, test_size=0.3, random_state=42, shuffle=True)
@@ -172,7 +178,7 @@ model = keras.models.Sequential([
 ])
 
 lr = 0.001
-epochs = 1
+epochs = 12
 
 opt = Adam(lr=lr, decay=lr / (epochs * 0.5))
 model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
@@ -190,8 +196,8 @@ aug = ImageDataGenerator(
 history = model.fit(aug.flow(X_train, y_train, batch_size=32), epochs=epochs, validation_data=(X_val, y_val))
 
 #Saving the models
-model.save("model.h5")
-model.save_weights("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/output")
+model.save("trafficsigns.h5")
+model.save_weights(os.getcwd() + '/output')
 
 #load the test data and running the predictions
 test = pd.read_csv(data_dir + '/Test.csv')

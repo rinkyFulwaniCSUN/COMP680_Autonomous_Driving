@@ -4,15 +4,14 @@ import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
-
+import os
 
 
 class trafficSign:
 
 
     def trafficsign(image):
-        print("---------", image);
-        model_path = "C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_sign/signs.h5"
+        model_path = os.getcwd() + '/traffic_sign/trafficsigns.h5'
         loaded_model = tf.keras.models.load_model(model_path)
         imagename = image
         image = cv2.imread(imagename)
