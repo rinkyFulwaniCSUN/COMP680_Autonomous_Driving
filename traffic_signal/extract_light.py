@@ -5,9 +5,10 @@
 
 import cv2 # Computer vision library
 import object_detection # Contains methods for object detection in images
+import os
 
 # Get a list of jpeg image files containing traffic lights
-files = object_detection.get_files('C:/Users/13039/Downloads/dataset_train_rgb/rgb/train/2017-02-03-11-44-56_los_altos_mountain_view_traffic_lights_bag/*.png')
+files = object_detection.get_files(os.getcwd() + '/2017-02-03-11-44-56_los_altos_mountain_view_traffic_lights_bag/*.png')
 
 # Load the object detection model
 this_model = object_detection.load_ssd_coco()
@@ -61,7 +62,7 @@ for file in files:
       traffic_light = cv2.cvtColor(traffic_light, cv2.COLOR_RGB2BGR)
 
       # Store the cropped image in a folder named 'traffic_light_cropped'
-      cv2.imwrite("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680/ML project/traffic-signal-detector/traffic_light_cropped/" + str(traffic_light_count) + ".jpg", traffic_light)
+      cv2.imwrite(os.getcwd() + "/traffic_light_cropped/" + str(traffic_light_count) + ".jpg", traffic_light)
 
       # Increment the number of traffic lights by 1
       traffic_light_count = traffic_light_count + 1

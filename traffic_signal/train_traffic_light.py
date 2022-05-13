@@ -190,7 +190,7 @@ class_weight = {0: n / cnt[0], 1: n / cnt[1], 2: n / cnt[2], 3: n / cnt[3]}
 print('Class weight:', class_weight)
 
 # Save the best model as traffic.h5
-checkpoint = ModelCheckpoint("traffic.h5", monitor='val_loss', mode='min', verbose=1, save_best_only=True)
+checkpoint = ModelCheckpoint("trafficSinal.h5", monitor='val_loss', mode='min', verbose=1, save_best_only=True)
 early_stopping = EarlyStopping(min_delta=0.0005, patience=15, verbose=1)
 
 # Generate model using transfer learning
@@ -209,7 +209,7 @@ model.compile(loss=categorical_crossentropy, optimizer=Adadelta(
 # Train the model on the image batches for a fixed number of epochs
 # Store a record of the error on the training data set and metrics values
 #   in the history object.
-history_object = model.fit(it_train, epochs=50, validation_data=(
+history_object = model.fit(it_train, epochs=25, validation_data=(
   x_valid, y_valid), shuffle=True, callbacks=[
   checkpoint, early_stopping], class_weight=class_weight)
 
