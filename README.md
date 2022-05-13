@@ -4,3 +4,13 @@ Our goals for this project include lane detection, pedestrian detection, obstacl
 We are planning to use OpenCV (Computer Vision) for the image processing part. We will be using a dataset from the open source platform and we will be deploying our machine learning algorithm on that dataset to determine different aspects of the roads. Finally we will use CNN to predict those aspects.
 
 
+Installation:
+
+1. Install python3 to your local computer.
+2. Clone the github repository to a local folder. This folder will be named as "COMP680_Autonomous_Driving" 
+3. Open the terminal and go the location where you cloned the github repository.
+4. Execute the command "pip install -r requirements.txt" - This command will install the dependencies needed in this project. 
+5. Once all the dependencies are installed, you have to start the server to start the web application. For this step, run the command "python main.py"
+6. If this command is executed successfully, it will show you the link for web app. Open this link in your preferred browser and check out the application. 
+7. For Traffic Sign module, once you upload the image and click on Predict button, it will show the output label of the image on the webpage itself. Sample images to upload and test are provided under "traffic_sign/test_images" folder.
+8. To execute traffic signal detection, after you upload the image and click on Predict button, it will save the output result image "inputImage_test.jpg" in the root folder. The prediction can be seen there. 
