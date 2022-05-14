@@ -205,8 +205,7 @@ def perform_object_detection(model, file_name, save_annotated=False, model_traff
     {"y": int(box[0] * img_rgb.shape[0]), "x": int(box[1] * img_rgb.shape[1]), "y2": int(box[2] * img_rgb.shape[0]),
      "x2": int(box[3] * img_rgb.shape[1])} for box in output['detection_boxes']]
 
-  print("save annotated ==", save_annotated)
-  print("model trAFFFIC LIGHTS==", model_traffic_lights)
+
   if save_annotated:
     save_image_annotated(img_rgb, file_name, output, model_traffic_lights)
 

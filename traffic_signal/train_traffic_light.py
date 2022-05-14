@@ -1,19 +1,11 @@
-# Project: How to Detect and Classify Traffic Lights
-# Author: Addison Sears-Collins
-# Date created: January 17, 2021
-# Description: This program trains a neural network to detect the color
-#   of a traffic light. Performance on the validation data set is saved
-#   to a directory. Also, the best neural network model is saved as
-#   traffic.h5.
-
-import collections # Handles specialized container datatypes
-import cv2 # Computer vision library
-import matplotlib.pyplot as plt # Plotting library
-import numpy as np # Scientific computing library
-import object_detection # Custom object detection program
+import collections
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import object_detection
 import sys
-import tensorflow as tf # Machine learning library
-from tensorflow import keras # Library for neural networks
+import tensorflow as tf
+from tensorflow import keras
 from tensorflow.keras.applications.inception_v3 import InceptionV3, preprocess_input
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.layers import Dense, Flatten, Dropout, GlobalAveragePooling2D, GlobalMaxPooling2D, BatchNormalization
@@ -29,13 +21,7 @@ print("TensorFlow", tf.__version__)
 print("Keras", keras.__version__)
 
 def show_history(history):
-  """
-  Visualize the neural network model training history
 
-  :param:history A record of training loss values and metrics values at
-                 successive epochs, as well as validation loss values
-                 and validation metrics values
-  """
   plt.plot(history.history['accuracy'])
   plt.plot(history.history['val_accuracy'])
   plt.title('model accuracy')
@@ -45,24 +31,10 @@ def show_history(history):
   plt.show()
 
 def Transfer(n_classes, freeze_layers=True):
-  """
-  Use the InceptionV3 neural network architecture to perform transfer learning.
 
-  :param:n_classes Number of classes
-  :param:freeze_layers If True, the network's parameters don't change.
-  :return The best neural network
-  """
   print("Loading Inception V3...")
 
-  # To understand what the parameters mean, do a Google search 'inceptionv3 keras'.
-  # The first search result should send you to the Keras website, which has an
-  # explanation of what each of these parameters mean.
-  # input_top means we are removing the top part of the Inception model, which is the
-  # classifier.
-  # input_shape needs to have 3 channels, and needs to be at least 75x75 for the
-  # resolution.
-  # Our neural network will build off of the Inception V3 model (trained on the ImageNet
-  # data set).
+
   base_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(299, 299, 3))
 
   print("Inception V3 has finished loading.")
@@ -74,9 +46,7 @@ def Transfer(n_classes, freeze_layers=True):
   print("Shape:", base_model.outputs)
   base_model.summary()
 
-  # Create the neural network. This network uses the Sequential
-  # architecture where each layer has one
-  # input tensor (e.g. vector, matrix, etc.) and one output tensor
+
   top_model = Sequential()
 
   # Our classifier model will build on top of the base model
@@ -99,11 +69,7 @@ def Transfer(n_classes, freeze_layers=True):
 
   return top_model
 
-# Perform image augmentation.
-# Image augmentation enables us to alter the available images
-# (e.g. rotate, flip, changing the hue, etc.) to generate more images that our
-# neural network can use for training...therefore preventing us from having to
-# collect more external images.
+
 datagen = ImageDataGenerator(rotation_range=5, width_shift_range=[-10, -5, -2, 0, 2, 5, 10],
                              zoom_range=[0.7, 1.5], height_shift_range=[-10, -5, -2, 0, 2, 5, 10],
                              horizontal_flip=True)
@@ -117,11 +83,7 @@ img_2_red = object_detection.load_rgb_images("traffic_light_dataset/2_red/*", sh
 img_3_not_traffic_light = object_detection.load_rgb_images("traffic_light_dataset/3_not/*", shape)
 
 # Create a list of the labels that is the same length as the number of images in each
-# category
-# 0 = green
-# 1 = yellow
-# 2 = red
-# 3 = not a traffic light
+
 labels = [0] * len(img_0_green)
 labels.extend([1] * len(img_1_yellow))
 labels.extend([2] * len(img_2_red))
@@ -160,16 +122,7 @@ for idx in range(len(labels_np)):
   labels_np[idx] = np.array(to_categorical(labels[idx], 4))
 
 # Split the data set into a training set and a validation set
-# The training set is the portion of the data set that is used to
-#   determine the parameters (e.g. weights) of the neural network.
-# The validation set is the portion of the data set used to
-#   fine tune the model-specific parameters (i.e. hyperparameters) that are
-#   fixed before you train and test your neural network on the data. The
-#   validation set helps us select the final model (e.g. learning rate,
-#   number of hidden layers, number of hidden units, activation functions,
-#   number of epochs, etc.
-# In this case, 80% of the data set becomes training data, and 20% of the
-# data set becomes validation data.
+
 idx_split = int(len(labels_np) * 0.8)
 x_train = images_np[0:idx_split]
 x_valid = images_np[idx_split:]
@@ -206,9 +159,6 @@ it_train = datagen.flow(x_train, y_train, batch_size=32)
 model.compile(loss=categorical_crossentropy, optimizer=Adadelta(
   lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0), metrics=['accuracy'])
 
-# Train the model on the image batches for a fixed number of epochs
-# Store a record of the error on the training data set and metrics values
-#   in the history object.
 history_object = model.fit(it_train, epochs=25, validation_data=(
   x_valid, y_valid), shuffle=True, callbacks=[
   checkpoint, early_stopping], class_weight=class_weight)

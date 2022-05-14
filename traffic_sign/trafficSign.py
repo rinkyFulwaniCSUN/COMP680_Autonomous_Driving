@@ -17,14 +17,6 @@ from sklearn.metrics import accuracy_score
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from keras.utils import np_utils
 
-# class trafficSign(object):
-#     """docstring for trafficSign."""
-#
-#     def __init__(self, epochs):
-#         super(trafficSign, self).__init__()
-#         self.epochs = epochs
-#         print("epochs from user---"+ self.epochs)
-
 
 data_dir = os.getcwd() + '/traffic_sign_dataset'
 list_images = []
@@ -140,7 +132,6 @@ image_labels = image_labels[shuffle_indexes]
 #splitting data into train and validation dataset
 
 X_train, X_val, y_train, y_val = train_test_split(image_data, image_labels, test_size=0.3, random_state=42, shuffle=True)
-
 X_train = X_train/255
 X_val = X_val/255
 
@@ -178,7 +169,7 @@ model = keras.models.Sequential([
 ])
 
 lr = 0.001
-epochs = 12
+epochs = 20
 
 opt = Adam(lr=lr, decay=lr / (epochs * 0.5))
 model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])

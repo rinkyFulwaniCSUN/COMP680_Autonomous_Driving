@@ -6,9 +6,7 @@ from PIL import Image
 import numpy as np
 import os
 
-
 class trafficSign:
-
 
     def trafficsign(image):
         model_path = os.getcwd() + '/traffic_sign/trafficsigns.h5'
@@ -155,6 +153,3 @@ class trafficSign:
             return [{"image": prediction}]
         else:
             return [{"ERROR": "Please select another image. !!!"}]
-
-
-#trafficsign();

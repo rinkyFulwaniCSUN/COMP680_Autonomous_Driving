@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request;
+from flask import Blueprint, render_template, request, jsonify;
 import sys
 import os
 sys.path.append(os.path.abspath("C:/Users/13039/Desktop/RINKY/RINKY_GRAD/sem 2/COMP 680_MAchine_learning/COMP680_Autonomous_Driving/traffic_signal"))
@@ -19,5 +19,5 @@ def predict():
     if request.method == "POST":
         image = request.json['image']
         decodeImage(image, "inputImage.jpg")
-        TrafficLights.traffic_lights("inputImage.jpg")
-        return "Success"
+        opimg = TrafficLights.traffic_lights("inputImage.jpg")
+        return jsonify("Success")

@@ -19,7 +19,7 @@ def home():
 
 @views.route('/traffic_sign')
 def traffic_sign():
-    return render_template('index.html', result=[{}]);
+    return render_template('signs.html', result=[{}]);
 
 
 
@@ -42,8 +42,6 @@ def predict():
         print("from views.py==", result)
         return jsonify(result)
         #return render_template('traffic_sign.html', result=jsonify(result))
-    else:
-        return render_template('traffic_sign.html', result='')
 
 
 @views.route('/train_traffic_sign', methods=["GET", "POST"])

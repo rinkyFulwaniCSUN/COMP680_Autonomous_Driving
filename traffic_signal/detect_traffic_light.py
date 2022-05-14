@@ -1,13 +1,7 @@
-# Project: How to Detect and Classify Traffic Lights
-# Author: Addison Sears-Collins
-# Date created: January 17, 2021
-# Description: This program uses a trained neural network to
-# detect the color of a traffic light in images.
-
-import cv2 # Computer vision library
-import numpy as np # Scientific computing library
-import object_detection # Custom object detection program
-from tensorflow import keras # Library for neural networks
+import cv2
+import numpy as np
+import object_detection
+from tensorflow import keras
 from tensorflow.keras.applications.inception_v3 import InceptionV3, preprocess_input
 from tensorflow.keras.applications import imagenet_utils
 from tensorflow.keras.preprocessing.image import img_to_array
@@ -44,16 +38,7 @@ class TrafficLights:
 
     # Load the trained neural network
         model_traffic_lights_nn = keras.models.load_model(os.getcwd() + "/traffic_signal/trafficSinal.h5")
-
-    # Go through all image files, and detect the traffic light color.
-        # for file in files:
-        #     (img, out, file_name) = object_detection.perform_object_detection(
-        #     model_ssd, file, save_annotated=True, model_traffic_lights=model_traffic_lights_nn)
-        #     print(file, out)
-        #     return file;
-
-
         opimg, output, opfilename =  object_detection.perform_object_detection(
         model_ssd, filename, save_annotated=True, model_traffic_lights=model_traffic_lights_nn)
         print(output)
-        return output;
+        return opimg;
