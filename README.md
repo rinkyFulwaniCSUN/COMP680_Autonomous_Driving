@@ -4,45 +4,58 @@ Our goals for this project include lane detection, pedestrian detection, obstacl
 We are planning to use OpenCV (Computer Vision) for the image processing part. We will be using a dataset from the open source platform and we will be deploying our machine learning algorithm on that dataset to determine different aspects of the roads. Finally we will use CNN to predict those aspects.
 
 
-##Setup:
+##
+Setup:
 
 The following is the setup that we need to do on our system in order to set up the GPU for tensorflow.
 
-##We have used Miniconda to setup our environment for this project:
+##
+We have used Miniconda to setup our environment for this project:
   Download Link: https://docs.conda.io/en/latest/miniconda.html
 
-##You should install the latest version of your GPUs driver. You can download drivers here:
+##
+You should install the latest version of your GPUs driver. You can download drivers here:
   https://www.nvidia.com/Download/index.aspx
 
-##You will need Visual Studio, with C++ installed. By default, C++ is not installed with Visual Studio, so make sure you select all of the C++ options:
+##
+You will need Visual Studio, with C++ installed. By default, C++ is not installed with Visual Studio, so make sure you select all of the C++ options:
   https://www.tensorflow.org/install/gpu
 
-##Then download that (or a later) version of CUDA from the following site:
+##
+Then download that (or a later) version of CUDA from the following site:
   https://developer.nvidia.com/cuda-downloads
 
-##CuDNN:
+##
+CuDNN:
   https://developer.nvidia.com/cudnn
 
-##Jupyter(Use the following command on anaconda prompt):
+##
+Jupyter(Use the following command on anaconda prompt):
   conda install -y jupyter
 
-##Setup the environment on Anaconda:
+##
+Setup the environment on Anaconda:
   conda create -y --name tensorflow python=3.9
 
-##To enter this environment, you must use the following command (for Windows), this command must be done every time you open a new Anaconda/Miniconda terminal window:
+##
+To enter this environment, you must use the following command (for Windows), this command must be done every time you open a new Anaconda/Miniconda terminal window:
   conda activate tensorflow
 
-##Jupyter Kernel:
+##
+Jupyter Kernel:
 It is easy to install Jupyter notebooks with the following command:
   conda install -y jupyter
 
-##Once Jupyter is installed, it is started with the following command:
+##
+Once Jupyter is installed, it is started with the following command:
   jupyter notebook
 
-##Step 9: Install TensorFlow/Keras
+##
+Step 9: Install TensorFlow/Keras
   pip install tensorflow
 
-##Testing if GPU is available:
+##
+Testing if GPU is available:
   import tensorflow as tf
   print(tf.__version__)
   print(len(tf.config.list_physical_devices('GPU'))>0)
@@ -50,7 +63,8 @@ It is easy to install Jupyter notebooks with the following command:
 
 
 
-##Installation:
+##
+Installation:
 
 1. Install python3 to your local computer.
 2. Clone the github repository to a local folder. This folder will be named as "COMP680_Autonomous_Driving" 
